@@ -1,6 +1,10 @@
-FROM node:14
-WORKDIR /usr/src/app
+FROM node:14 AS Builder
+WORKDIR /usr/src/app 
 COPY package*.json ./
-RUN npm install
+RUN npm install 
 COPY . .
-CMD [ "npm", "start" ]
+
+FROM node:14 AS runtime
+WORKDIR /usr/src/app 
+COPY --from=Builder /usr/src/app ./
+CMD [ "npm","start" ]
