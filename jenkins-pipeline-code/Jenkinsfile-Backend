@@ -19,7 +19,7 @@ pipeline{
     }
     stage('checkout code from git repo'){
         steps{
-            git credentialsId: 'GIT_HUB', url: 'https://github.com/AmanPathak-DevOps/End-to-End-Kubernetes-Three-Tier-DevSecOps-Project.git' 
+            git credentialsId: 'GIT_HUB', url: 'https://github.com/silentknight2001/Devops-Three-tier-end-to-end.git' 
         }
     }
     stage('sonarqube Analysis'){
@@ -84,13 +84,13 @@ pipeline{
     }
     stage('checkout code'){
         steps{
-            git credentialsId: 'GITHUB', uri: 'https://github.com/AmanPathak-DevOps/End-to-End-Kubernetes-Three-Tier-DevSecOps-Project.git'
+            git credentialsId: 'GITHUB', uri: 'https://github.com/silentknight2001/Devops-Three-tier-end-to-end.git'
         }
     }
     stage('Update deployment file'){
         environment{
-            GIT_REPO_NAME = "End-to-End-Kubernetes-Three-Tier-DevSecOps-Project"
-            GIT_USER_NAME = "AmanPathak-DevOps"
+            GIT_REPO_NAME = "Devops-Three-tier-end-to-end"
+            GIT_USER_NAME = "silentknight2001"
         }
         steps{
             dir('k8s-menifast/backend'){
