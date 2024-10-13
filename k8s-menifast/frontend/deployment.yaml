@@ -1,0 +1,34 @@
+apiVersion: app/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: Three-tier
+  labels:
+    role: frontend
+    env: demo
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 25%
+  selector:
+    matchlabels:
+      role: frontend
+    template:
+      metadata:
+        labels:
+          role: frontend
+      spec:
+        imagePullSecret:
+        - name: ecr-image-problem
+        containers:
+        - name: frontend
+          image: ecr.registry.frontend.url
+          imagePullPolicy: always
+          env:
+          - name: react-app-backend
+            value: "https://bakend/api/for/frornt/end"
+          ports:
+          - containerPort: 3000

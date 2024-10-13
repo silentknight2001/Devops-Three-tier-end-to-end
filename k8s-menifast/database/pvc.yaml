@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVloumeClaim
+metadata:
+  name: mongo-vloume-claim
+  namespace: three-tier
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 1Gi
